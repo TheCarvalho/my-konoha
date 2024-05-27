@@ -1,0 +1,36 @@
+{
+  "Sasuke": {
+    "nomeCompleto": "Sasuke Uchiha",
+    "foto": "https://i.pinimg.com/736x/d9/87/ac/d987aca286eff159995596f3bd573c35.jpg",
+    "descricao": "Genin",
+    "post": ["Vou vingar meu clã e fazer um certo alguem pagar"]
+  },
+  "Naruto": {
+    "nomeCompleto": "Naruto Uzumaki",
+    "foto": "https://d.wattpad.com/story_parts/764666522/images/15c3d6f398ed1b2b942797173830.jpg",
+    "descricao": "Genin",
+    "post": ["Datebayo", "Um dia eu me tornarei Hokage, tô certo"],
+    "links": [
+      { "url": "https://konoha.com/hokage", "texto": "👉 konoha.com/hokage" },
+      { "url": "#", "texto": "#Konoha" },
+      { "url": "#", "texto": "#Shinobi" },
+      { "url": "#", "texto": "#Hokage" }
+    ]
+  },
+  "Jiraya": {
+    "nomeCompleto": "Jiraya Pereira",
+    "foto": "https://revolucaonerd.com/wordpress/wp-content/files/revolucaonerd.com/2023/04/jiraya-naruto-1024x683.webp",
+    "descricao": "Sanin",
+    "post": ["Cade as bebidas???"]
+  },
+  "Tsunade": {
+    "nomeCompleto": "Tsunade da Silva",
+    "foto": "https://i.pinimg.com/564x/4f/6d/bf/4f6dbf0b6e1a8b2b3a56f372b83a73f5.jpg",
+    "descricao": "Hokage"
+  },
+  "Abdon": {
+    "nomeCompleto": "Abdon Carvalho",
+    "foto": "https://github.com/TheCarvalho.png",
+    "descricao": "Desenvolvedor Front-end"
+  }
+}

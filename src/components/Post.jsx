@@ -1,19 +1,18 @@
+import dados from "../data/dados.json";
 import { Comment } from "./Comment";
 import styles from "./Post.module.css";
+import { Avatar } from "./avatar";
 
-export function Post() {
+export function Post({ user }) {
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <img
-            className={styles.avatar}
-            src="https://github.com/TheCarvalho.png"
-            alt="Foto do usuário"
-          />
+          <Avatar foto={dados[user]?.foto} />
+
           <div className={styles.authorInfo}>
-            <strong>Abdon Carvalho</strong>
-            <span>Desenvolvedor Front-end</span>
+            <strong>{dados[user]?.nomeCompleto}</strong>
+            <span>{dados[user]?.descricao}</span>
           </div>
         </div>
         <time
@@ -24,33 +23,48 @@ export function Post() {
         </time>
       </header>
       <div className={styles.content}>
-        <p>Fala galeraa 👋</p>
-        <p>
-          Acabei de subir mais um projeto no meu portifa. É um projeto que fiz
-          no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀
-        </p>
-        <p>
-          👉 <a href="#">jane.design/doctorcare</a>
-        </p>
-        <p>
-          <a href="#">#novoprojeto</a> <a href="#">#nlw</a>{" "}
-          <a href="#">#rocketseat</a>
-        </p>
+        {dados[user].post.map((post, index) => (
+          <p key={index}>{post}</p>
+        ))}
+
+        {dados[user]?.links && (
+          <div className={styles.linksContainer}>
+            {dados[user].links.map((link, index) => (
+              <a key={index} href={link.url}>
+                {link.texto}
+                <br />
+              </a>
+            ))}
+          </div>
+        )}
       </div>
 
       <form className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
-        <textarea
-          placeholder="Deixe um comentário"
-        />
+        <textarea placeholder="Deixe um comentário" />
         <footer>
           <button type="submit">Publicar</button>
         </footer>
       </form>
       <div className={styles.commentList}>
-        <Comment/>
-        <Comment/>
-        <Comment/>
+        <Comment
+          nome="Sasuke"
+          foto={dados.Sasuke?.foto}
+          soquinhos={5}
+          comentario="Parabéns"
+        />
+        <Comment
+          nome="Jiraya"
+          foto={dados.Jiraya?.foto}
+          soquinhos={0}
+          comentario="Uhuu"
+        />
+        <Comment
+          nome="Tsunade"
+          foto={dados.Tsunade?.foto}
+          soquinhos={25}
+          comentario="Pirralho"
+        />
       </div>
     </article>
   );
