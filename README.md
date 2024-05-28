@@ -8,7 +8,7 @@
 - **Phosphor Icons**: Para os ícones do projeto, escolhi a biblioteca Phosphor Icons, que oferece uma grande variedade de ícones personalizáveis.
 - **CSS Puro**: Toda a estilização foi feita utilizando CSS puro, garantindo um layout responsivo e moderno.
 
-## Funcionalidades (ainda em desenvolvimento)
+## Funcionalidades (Em desenvolvimento)
 - **Publicação de Posts**: Os personagens podem criar posts com links e hashtags.
 - **Comentários e Feedbacks**: Cada post permite que outros personagens deixem comentários e feedbacks.
 - **Interações Sociais**: Opção de "soquinhos" os posts para mostrar apreciação.
@@ -22,7 +22,7 @@ Trabalhar neste projeto me permitiu aprofundar meu conhecimento em React e explo
 ## Como Executar o Projeto
 1. Clone o repositório:
    ```bash
-   git clone <URL_DO_REPOSITÓRIO>
+   git clone https://github.com/TheCarvalho/my-konoha.git
 1. Navegue até o diretório do projeto:
    ```bash
    cd my-konoha
