@@ -1,9 +1,10 @@
+import React from "react";
 import dados from "../data/dados.json";
 import { Comment } from "./Comment";
 import styles from "./Post.module.css";
 import { Avatar } from "./avatar";
 
-export function Post({ user }) {
+export function Post({ user, comment }) {
   return (
     <article className={styles.post}>
       <header>
@@ -46,26 +47,24 @@ export function Post({ user }) {
           <button type="submit">Publicar</button>
         </footer>
       </form>
-      <div className={styles.commentList}>
-        <Comment
-          nome="Sasuke"
-          foto={dados.Sasuke?.foto}
-          soquinhos={5}
-          comentario="Parabéns"
-        />
-        <Comment
-          nome="Jiraya"
-          foto={dados.Jiraya?.foto}
-          soquinhos={0}
-          comentario="Uhuu"
-        />
-        <Comment
-          nome="Tsunade"
-          foto={dados.Tsunade?.foto}
-          soquinhos={25}
-          comentario="Pirralho"
-        />
-      </div>
+
+      {comment && comment.length > 0 && (
+        <div className={styles.commentList}>
+          {comment.map((comment, index) => {
+            const soquinhosAleatorios = Math.floor(Math.random() * 11);
+
+            return (
+              <Comment
+                key={index}
+                nome={dados[comment]?.nomeCompleto}
+                foto={dados[comment]?.foto}
+                soquinhos={soquinhosAleatorios}
+                comentario={dados[comment]?.comentario}
+              />
+            );
+          })}
+        </div>
+      )}
     </article>
   );
 }

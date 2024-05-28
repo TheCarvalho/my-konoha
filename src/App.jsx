@@ -9,8 +9,8 @@ function App() {
     <div className={styles.wrapper}>
       <Sidebar user={userLogado} />
       <main>
-        <Post user="Naruto" />
-        <Post user="Sasuke" />
+        <Post user="Naruto" comment={["Sasuke", "Tsunade"]} />
+        <Post user="Sasuke" comment={["Naruto", "Abdon", "Jiraya"]} />
         <Post user="Jiraya" />
       </main>
     </div>

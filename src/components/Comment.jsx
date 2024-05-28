@@ -1,4 +1,4 @@
-import { ThumbsUp, Trash } from "@phosphor-icons/react";
+import { HandFist, ThumbsUp, Trash } from "@phosphor-icons/react";
 import styles from "./Comment.module.css";
 import { Avatar } from "./avatar";
 
@@ -27,7 +27,7 @@ export function Comment({ nome, comentario, foto, soquinhos = 0 }) {
         </div>
         <footer>
           <button>
-            <ThumbsUp size={20} />
+            <HandFist size={20} />
             Soquinhos <span>{soquinhos}</span>
           </button>
         </footer>
