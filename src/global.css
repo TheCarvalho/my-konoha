@@ -36,4 +36,11 @@ body {
   background-color: var(--gray-900);
   color: var(--gray-300);
   -webkit-font-smoothing: antialiased;
+
+  background-image: url("./assets/background.jpg");
+  background-repeat: no-repeat;
+  background-position: right;
+  background-attachment: fixed;
+  backdrop-filter: blur(5px);
 }
+
