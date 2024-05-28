@@ -1,43 +1,43 @@
+import { format, formatDistanceToNow } from "date-fns";
+import ptBR from "date-fns/locale/pt-BR";
 import React from "react";
-import dados from "../data/dados.json";
 import { Comment } from "./Comment";
 import styles from "./Post.module.css";
 import { Avatar } from "./avatar";
 
-export function Post({ user, comment }) {
+export function Post({ author, content, publishedAt }) {
+  const publishedDateFormatted = format(
+    publishedAt,
+    "d 'de' LLLL 'às' HH:mm'h'",
+    { locale: ptBR }
+  );
+  const publishedDateRelativeToNow = formatDistanceToNow(publishedAt,{locale:ptBR, addSuffix: true})
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar foto={dados[user]?.foto} />
+          <Avatar foto={author.avatarUrl} />
 
           <div className={styles.authorInfo}>
-            <strong>{dados[user]?.nomeCompleto}</strong>
-            <span>{dados[user]?.descricao}</span>
+            <strong>{author.name}</strong>
+            <span>{author.role}</span>
           </div>
         </div>
         <time
-          title="26 de Maio de 2024 às 21:26h"
-          dateTime="2024-05-26 21:36:00"
-        >
-          Publicado há 42 min
-        </time>
+          title={publishedDateFormatted}
+          dateTime={publishedAt.toISOString()}
+        >{publishedDateRelativeToNow}</time>
       </header>
       <div className={styles.content}>
-        {dados[user].post.map((post, index) => (
-          <p key={index}>{post}</p>
-        ))}
-
-        {dados[user]?.links && (
-          <div className={styles.linksContainer}>
-            {dados[user].links.map((link, index) => (
-              <a key={index} href={link.url}>
-                {link.texto}
-                <br />
-              </a>
-            ))}
-          </div>
-        )}
+        {content.map(line=>{
+          if(line.type === "p"){
+            return <p>{line.content}</p>
+          } else if(line.type ==="link"){
+            return <a href="#">{line.content} </a>
+          } else if(line.type ==="pLink") {
+            return <p><a href="#">{line.content}</a></p>
+          }
+        })}
       </div>
 
       <form className={styles.commentForm}>
@@ -48,23 +48,18 @@ export function Post({ user, comment }) {
         </footer>
       </form>
 
-      {comment && comment.length > 0 && (
-        <div className={styles.commentList}>
-          {comment.map((comment, index) => {
-            const soquinhosAleatorios = Math.floor(Math.random() * 11);
-
-            return (
-              <Comment
-                key={index}
-                nome={dados[comment]?.nomeCompleto}
-                foto={dados[comment]?.foto}
-                soquinhos={soquinhosAleatorios}
-                comentario={dados[comment]?.comentario}
-              />
-            );
-          })}
-        </div>
-      )}
+      <Comment
+        nome="gabriel"
+        comentario="top"
+        foto="https://github.com/TheCarvalho.png"
+        soquinhos={2}
+      />
+      <Comment
+        nome="gabriel"
+        comentario="top"
+        foto="https://github.com/TheCarvalho.png"
+        soquinhos={2}
+      />
     </article>
   );
 }
