@@ -26,7 +26,7 @@ Trabalhar neste projeto me permitiu aprofundar meu conhecimento em React e explo
 1. Navegue até o diretório do projeto:
    ```bash
    cd my-konoha
-1. Instale as dependências::
+1. Instale as dependências:
    ```bash
    npm install
 1. Inicie o servidor de desenvolvimento:
