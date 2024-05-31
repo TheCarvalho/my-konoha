@@ -7,33 +7,40 @@ import { Comment } from "./Comment";
 import styles from "./Post.module.css";
 import { Avatar } from "./avatar";
 
-const lista = [
-  {
-    id: 1,
-    nome: "Gabriel",
-    comentario: "Top",
-    foto: "https://github.com/TheCarvalho.png",
-    soquinhos: 2,
-  },
-  {
-    id: 2,
-    nome: "Gabriel",
-    comentario: "Legal",
-    foto: "https://github.com/TheCarvalho.png",
-    soquinhos: 3,
-  },
-  {
-    id: 3,
-    nome: "Gabriel",
-    comentario: "Ótimo",
-    foto: "https://github.com/TheCarvalho.png",
-    soquinhos: 4,
-  },
-];
+// const lista = [
+//   {
+//     id: 1,
+//     nome: "Gabriel",
+//     comentario: "Top",
+//     foto: "https://github.com/TheCarvalho.png",
+//     soquinhos: 2,
+//   },
+//   {
+//     id: 2,
+//     nome: "Gabriel",
+//     comentario: "Legal",
+//     foto: "https://github.com/TheCarvalho.png",
+//     soquinhos: 3,
+//   },
+//   {
+//     id: 3,
+//     nome: "Gabriel",
+//     comentario: "Ótimo",
+//     foto: "https://github.com/TheCarvalho.png",
+//     soquinhos: 4,
+//   },
+// ];
+
 export function Post({ author, content, publishedAt }) {
   const [comentarios, setComentarios] = useState(["post bacana"]);
   const [newCommentText, setNewCommentText] = useState("");
 
+  function handleKeyDown(event) {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      handleCreateNewComment(event);
+    }
+  }
   function handleCreateNewComment(event) {
     event.preventDefault();
 
@@ -44,8 +51,12 @@ export function Post({ author, content, publishedAt }) {
     setNewCommentText(event.target.value);
   }
 
-  function deleteComment(comment) {
-    console.log(`Deletando comentario "${comment}"`);
+  function deleteComment(commentToBeDeleted) {
+    const commentsWithoutDeletedone = comentarios.filter((comment) => {
+      return comment !== commentToBeDeleted;
+    });
+
+    setComentarios(commentsWithoutDeletedone);
   }
 
   const publishedDateFormatted = format(
@@ -99,9 +110,11 @@ export function Post({ author, content, publishedAt }) {
         <strong>Deixe seu feedback</strong>
         <textarea
           onChange={handleNewCommentChange}
+          onKeyDown={handleKeyDown}
           name="FormComentario"
           value={newCommentText}
           placeholder="Deixe um comentário"
+          required
         />
 
         <footer>
@@ -113,8 +126,8 @@ export function Post({ author, content, publishedAt }) {
         return (
           <Comment
             key={comentario}
-            onDeleteComment={deleteComment} 
-            comentario={comentario} 
+            onDeleteComment={deleteComment}
+            comentario={comentario}
           />
           // <Comment
           //   key={index}
