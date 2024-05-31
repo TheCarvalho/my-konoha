@@ -1,5 +1,5 @@
 import styles from "./App.module.css";
-import posts from "./assets/data/posts.json";
+import posts from "./data/posts.json";
 import { Post } from "./components/Post";
 import { Sidebar } from "./components/Sidebar";
 

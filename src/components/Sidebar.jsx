@@ -1,5 +1,5 @@
 import { Pencil } from "@phosphor-icons/react";
-import dados from "../assets/data/dados.json";
+import dados from "../data/dados.json";
 import styles from "./Sidebar.module.css";
 import { Avatar } from "./avatar";
 
