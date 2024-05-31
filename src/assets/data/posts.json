@@ -2,10 +2,11 @@
   {
     "id": 1,
     "author": {
-      "avatarUrl": "./src/assets/characters/naruto.jpg",
+      "avatarUrl": "/my-konoha/src/assets/characters/naruto.jpg",
       "name": "Naruto Uzumaki",
       "role": "Genin"
     },
+
     "content": [
       { "type": "p", "content": "Datebayo" },
       { "type": "p", "content": "Um dia eu me tornarei Hokage, tô certo" },
