@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "nome": "Abdon Carvalho",
+    "comentario": "Top",
+    "foto": "https://github.com/TheCarvalho.png",
+    "soquinhos": 2
+  },
+  {
+    "id": 2,
+    "nome": "Sasuke Uchiha",
+    "comentario": "Legal",
+    "foto": "./src/assets/characters/sasuke.jpg",
+    "soquinhos": 3
+  },
+  {
+    "id": 3,
+    "nome": "Naruto Uzumaki",
+    "comentario": "Ótimo",
+    "foto": "./src/assets/characters/naruto.jpg",
+    "soquinhos": 4
+  }
+]

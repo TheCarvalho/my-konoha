@@ -1,17 +1,62 @@
 import { format, formatDistanceToNow } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
 import React from "react";
+// import comentarios from "../assets/data/comentarios.json";
+import { useState } from "react";
 import { Comment } from "./Comment";
 import styles from "./Post.module.css";
 import { Avatar } from "./avatar";
 
+const lista = [
+  {
+    id: 1,
+    nome: "Gabriel",
+    comentario: "Top",
+    foto: "https://github.com/TheCarvalho.png",
+    soquinhos: 2,
+  },
+  {
+    id: 2,
+    nome: "Gabriel",
+    comentario: "Legal",
+    foto: "https://github.com/TheCarvalho.png",
+    soquinhos: 3,
+  },
+  {
+    id: 3,
+    nome: "Gabriel",
+    comentario: "Ótimo",
+    foto: "https://github.com/TheCarvalho.png",
+    soquinhos: 4,
+  },
+];
 export function Post({ author, content, publishedAt }) {
+  const [comentarios, setComentarios] = useState(["post bacana"]);
+  const [newCommentText, setNewCommentText] = useState("");
+
+  function handleCreateNewComment(event) {
+    event.preventDefault();
+
+    setComentarios([...comentarios, newCommentText]);
+    setNewCommentText("");
+  }
+  function handleNewCommentChange(event) {
+    setNewCommentText(event.target.value);
+  }
+
+  function deleteComment(comment) {
+    console.log(`Deletando comentario "${comment}"`);
+  }
+
   const publishedDateFormatted = format(
     publishedAt,
     "d 'de' LLLL 'às' HH:mm'h'",
     { locale: ptBR }
   );
-  const publishedDateRelativeToNow = formatDistanceToNow(publishedAt,{locale:ptBR, addSuffix: true})
+  const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+    locale: ptBR,
+    addSuffix: true,
+  });
   return (
     <article className={styles.post}>
       <header>
@@ -26,40 +71,60 @@ export function Post({ author, content, publishedAt }) {
         <time
           title={publishedDateFormatted}
           dateTime={publishedAt.toISOString()}
-        >{publishedDateRelativeToNow}</time>
+        >
+          {publishedDateRelativeToNow}
+        </time>
       </header>
       <div className={styles.content}>
-        {content.map(line=>{
-          if(line.type === "p"){
-            return <p>{line.content}</p>
-          } else if(line.type ==="link"){
-            return <a href="#">{line.content} </a>
-          } else if(line.type ==="pLink") {
-            return <p><a href="#">{line.content}</a></p>
+        {content.map((line, index) => {
+          if (line.type === "p") {
+            return <p key={index}>{line.content}</p>;
+          } else if (line.type === "link") {
+            return (
+              <a key={index} href="#">
+                {line.content}{" "}
+              </a>
+            );
+          } else if (line.type === "pLink") {
+            return (
+              <p key={index}>
+                <a href="#">{line.content}</a>
+              </p>
+            );
           }
         })}
       </div>
 
-      <form className={styles.commentForm}>
+      <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
-        <textarea placeholder="Deixe um comentário" />
+        <textarea
+          onChange={handleNewCommentChange}
+          name="FormComentario"
+          value={newCommentText}
+          placeholder="Deixe um comentário"
+        />
+
         <footer>
           <button type="submit">Publicar</button>
         </footer>
       </form>
 
-      <Comment
-        nome="gabriel"
-        comentario="top"
-        foto="https://github.com/TheCarvalho.png"
-        soquinhos={2}
-      />
-      <Comment
-        nome="gabriel"
-        comentario="top"
-        foto="https://github.com/TheCarvalho.png"
-        soquinhos={2}
-      />
+      {comentarios.map((comentario) => {
+        return (
+          <Comment
+            key={comentario}
+            onDeleteComment={deleteComment} 
+            comentario={comentario} 
+          />
+          // <Comment
+          //   key={index}
+          //   nome={comentario.nome}
+          //   comentario={comentario.comentario}
+          //   foto={comentario.foto}
+          //   soquinhos={comentario.soquinhos}
+          // />
+        );
+      })}
     </article>
   );
 }
